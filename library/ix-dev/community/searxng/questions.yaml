@@ -159,24 +159,70 @@ questions:
                       schema:
                         type: path
                         required: true
-                    - variable: hostPath
-                      label: Host Path
-                      description: The host path to use for storage.
+                    # FIXME: Needs migration from hostPath -> additionalStorages[#].hostPathConfig.hostPath
+                    - variable: hostPathConfig
+                      label: hostPathConfig
                       schema:
-                        type: hostpath
+                        type: dict
                         show_if: [["type", "=", "hostPath"]]
-                        required: true
-                    - variable: datasetName
-                      label: Dataset Name
-                      description: The name of the dataset to use for storage.
+                        attrs:
+                          - variable: aclEnable
+                            label: Enable ACL
+                            description: Enable ACL for the dataset.
+                            schema:
+                              type: boolean
+                              default: false
+                          # If aclEnable is true, additionalStorages[#].hostPathConfig.acl.path
+                          - variable: acl
+                            label: ACL Configuration
+                            schema:
+                              type: dict
+                              show_if: [["aclEnable", "=", true]]
+                              attrs: []
+                              $ref:
+                                - "normalize/acl"
+                          # If aclEnable is false, additionalStorages[#].hostPathConfig.hostPath
+                          - variable: hostPath
+                            label: Host Path
+                            description: The host path to use for storage.
+                            schema:
+                              type: hostpath
+                              show_if: [["aclEnable", "=", false]]
+                              required: true
+                      # FIXME: Needs migration from datasetName -> additionalStorages[#].ixVolumeConfig.datasetName
+                    - variable: ixVolumeConfig
+                      label: ixVolume Configuration
+                      description: The configuration for the ixVolume dataset.
                       schema:
-                        type: string
+                        type: dict
                         show_if: [["type", "=", "ixVolume"]]
-                        required: true
-                        immutable: true
-                        default: "storage_entry"
                         $ref:
                           - "normalize/ixVolume"
+                        attrs:
+                          - variable: aclEnable
+                            label: Enable ACL
+                            description: Enable ACL for the dataset.
+                            schema:
+                              type: boolean
+                              default: false
+                          - variable: datasetName
+                            label: Dataset Name
+                            description: The name of the dataset to use for storage.
+                            schema:
+                              type: string
+                              required: true
+                              immutable: true
+                              default: "storage_entry"
+                          # aclEntries is a special variable name,
+                          # which counts when its under ixVolume
+                          - variable: aclEntries
+                            label: ACL Configuration
+                            schema:
+                              type: dict
+                              show_if: [["aclEnable", "=", true]]
+                              attrs: []
+                              $ref:
+                                - "normalize/acl"
                     - variable: server
                       label: Server
                       description: The server for the SMB share.
