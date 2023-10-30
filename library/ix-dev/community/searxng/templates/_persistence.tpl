@@ -34,6 +34,6 @@ persistence:
 
   {{- if $storage.hostPath -}}
     {{- $_ := set $storage "hostPathConfig" dict -}}
-    {{- $_ := set $storage.hostPathConfig.hostPath $storage.hostPath -}}
+    {{- $_ := set $storage.hostPathConfig "hostPath" $storage.hostPath -}}
   {{- end -}}
 {{- end -}}
