@@ -105,7 +105,6 @@ questions:
                       description: Host Path (Path that already exists on the system)
                     - value: "ixVolume"
                       description: ixVolume (Dataset created automatically by the system)
-              # FIXME: Needs migration from datasetName -> ixVolumeConfig.datasetName
               - variable: ixVolumeConfig
                 label: ixVolume Configuration
                 description: The configuration for the ixVolume dataset.
@@ -143,7 +142,6 @@ questions:
                         attrs: []
                         $ref:
                           - "normalize/acl"
-              # FIXME: Needs migration from hostPath -> hostPathConfig.hostPath
               - variable: hostPathConfig
                 label: hostPathConfig
                 schema:
@@ -162,7 +160,6 @@ questions:
                       schema:
                         type: boolean
                         default: false
-                    # If aclEnable is true, hostPathConfig.acl.path
                     - variable: acl
                       label: ACL Configuration
                       schema:
@@ -171,7 +168,6 @@ questions:
                         attrs: []
                         $ref:
                           - "normalize/acl"
-                    # If aclEnable is false, hostPathConfig.hostPath
                     - variable: hostPath
                       label: Host Path
                       description: The host path to use for storage.
