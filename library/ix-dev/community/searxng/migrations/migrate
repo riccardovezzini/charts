@@ -39,14 +39,11 @@ def migrate(values):
 
 
     additionalStorages = values.get(storageKey, {}).get('additionalStorages', {})
-    for storage in additionalStorages:
-        check_val = additionalStorages[storage]
-        if not isinstance(check_val, dict) or not check_val:
+    for idx, storage in enumerate(additionalStorages):
+        if not isinstance(storage, dict) or not storage:
             continue
 
-        additionalStorages[storage] = storageMigrate(check_val)
-
-    values[storageKey]['additionalStorages'] = additionalStorages
+        values[storageKey]['additionalStorages'][idx] = storageMigrate(storage)
 
 
     return values

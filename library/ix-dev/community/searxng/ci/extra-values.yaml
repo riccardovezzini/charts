@@ -3,22 +3,16 @@ searxngNetwork:
 
 searxngStorage:
   config:
-    type: hostPath
-    hostPathConfig:
-      hostPath: /mnt/{{ .Release.Namespace }}/config
+    type: pvc
   additionalStorages:
-  - type: hostPath
+  - type: pvc
     mountPath: /data1
-    hostPathConfig:
-      readOnly: true
-      aclEnable: true
-      acl:
-        path: /mnt/{{ .Release.Namespace }}/data1
-  - type: hostPath
-    mountPath: /data2
-    hostPathConfig:
-      aclEnable: false
-      hostPath: /mnt/{{ .Release.Namespace }}/data2
+  # - type: hostPath
+  #   readOnly: true
+  #   mountPath: /data2
+  #   hostPathConfig:
+  #     aclEnable: false
+  #     hostPath: /mnt/{{ .Release.Namespace }}/data2
   # - type: ixVolume
   #   mountPath: /data3
   #   ixVolumeConfig:
