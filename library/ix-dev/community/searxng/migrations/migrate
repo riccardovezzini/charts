@@ -5,7 +5,7 @@ import sys
 
 
 def storageMigrate(storage):
-    if storage.get('type') == 'hostPath':
+    if storage['type'] == 'hostPath':
         if not storage.get('hostPath'):
             return storage
 
@@ -13,7 +13,7 @@ def storageMigrate(storage):
         storage['hostPathConfig'] = { 'hostPath': hostPath }
         del storage['hostPath']
 
-    if storage.get('type') == 'ixVolume':
+    if storage['type'] == 'ixVolume':
         if not storage.get('datasetName'):
             return storage
 
