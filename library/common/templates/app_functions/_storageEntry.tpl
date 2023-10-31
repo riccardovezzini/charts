@@ -17,14 +17,16 @@
     {{- $size = (printf "%vGi" $storage.size) -}}
   {{- end -}}
 
+  {{- if $storage.readOnly -}}
+    {{- $readOnly = true -}}
+  {{- end -}}
+
+  {{/* hostPath */}}
   {{- if eq $storage.type "hostPath" -}}
     {{- if not $storage.hostPathConfig -}}
       {{- fail (printf "Storage - Expected [hostPathConfig] to not be empty") -}}
     {{- end -}}
 
-    {{- if $storage.hostPathConfig.readOnly -}}
-      {{- $readOnly = true -}}
-    {{- end -}}
     {{- if $storage.hostPathConfig.aclEnable -}}
       {{- $hostPath = $storage.hostPathConfig.acl.path -}}
     {{- else -}}
@@ -32,14 +34,12 @@
     {{- end -}}
   {{- end -}}
 
+  {{/* ixVolume */}}
   {{- if eq $storage.type "ixVolume" -}}
     {{- if not $storage.ixVolumeConfig -}}
       {{- fail (printf "Storage Expected [ixVolumeConfig] to not be empty") -}}
     {{- end -}}
 
-    {{- if $storage.ixVolumeConfig.readOnly -}}
-      {{- $readOnly = true -}}
-    {{- end -}}
     {{- $datasetName = $storage.ixVolumeConfig.datasetName -}}
   {{- end }}
 
