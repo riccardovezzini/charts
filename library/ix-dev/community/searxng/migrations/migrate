@@ -24,7 +24,6 @@ def storageMigrate(storage):
     return storage
 
 
-
 def migrate(values):
     storageKey = 'searxngStorage'
     storages = ['config']
