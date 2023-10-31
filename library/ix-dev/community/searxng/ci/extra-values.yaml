@@ -7,14 +7,3 @@ searxngStorage:
   additionalStorages:
   - type: pvc
     mountPath: /data1
-  # - type: hostPath
-  #   readOnly: true
-  #   mountPath: /data2
-  #   hostPathConfig:
-  #     aclEnable: false
-  #     hostPath: /mnt/{{ .Release.Namespace }}/data2
-  # - type: ixVolume
-  #   mountPath: /data3
-  #   ixVolumeConfig:
-  #     datasetName: data3
-  #     aclEnable: true
