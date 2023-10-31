@@ -24,7 +24,7 @@
   {{/* hostPath */}}
   {{- if eq $storage.type "hostPath" -}}
     {{- if not $storage.hostPathConfig -}}
-      {{- fail (printf "Storage - Expected [hostPathConfig] to not be empty") -}}
+      {{- fail (printf "Storage Shim - Expected non-empty [hostPathConfig]") -}}
     {{- end -}}
 
     {{- if $storage.hostPathConfig.aclEnable -}}
@@ -37,7 +37,7 @@
   {{/* ixVolume */}}
   {{- if eq $storage.type "ixVolume" -}}
     {{- if not $storage.ixVolumeConfig -}}
-      {{- fail (printf "Storage Expected [ixVolumeConfig] to not be empty") -}}
+      {{- fail (printf "Storage Shim - Expected non-empty [ixVolumeConfig]") -}}
     {{- end -}}
 
     {{- $datasetName = $storage.ixVolumeConfig.datasetName -}}
