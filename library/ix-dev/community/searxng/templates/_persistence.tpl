@@ -2,7 +2,7 @@
 persistence:
   config:
     enabled: true
-    {{- include "searxng.storage.ci.migration" (dict "storage" $storage) }}
+    {{- include "searxng.storage.ci.migration" (dict "storage" .Values.searxngStorage.config) }}
     {{- include "ix.v1.common.app.storageOptions" (dict "storage" .Values.searxngStorage.config) | nindent 2 }}
     targetSelector:
       searxng:
