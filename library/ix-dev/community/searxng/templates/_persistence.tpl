@@ -29,6 +29,7 @@ persistence:
   {{- end }}
 {{- end -}}
 
+{{/* TODO: Remove on the next version bump, eg 1.2.1+ */}}
 {{- define "searxng.storage.ci.migration" -}}
   {{- $storage := .storage -}}
 
