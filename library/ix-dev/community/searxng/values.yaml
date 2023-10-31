@@ -21,7 +21,3 @@ searxngStorage:
     type: ixVolume
     datasetName: config
   additionalStorages: []
-
-
-# .Values.searxngConfig.config.hostPath -> .Values.searxngConfig.config.hostPathConfig.hostPath
-# .Values.searxngConfig.config.datasetName -> .Values.searxngConfig.config.ixVolumeConfig.datasetName
