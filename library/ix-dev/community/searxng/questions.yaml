@@ -134,8 +134,6 @@ questions:
                         type: dict
                         show_if: [["aclEnable", "=", true]]
                         attrs: []
-                        $ref:
-                          - "normalize/acl"
               - variable: hostPathConfig
                 label: hostPathConfig
                 schema:
@@ -261,8 +259,6 @@ questions:
                               type: dict
                               show_if: [["aclEnable", "=", true]]
                               attrs: []
-                              $ref:
-                                - "normalize/acl"
                     - variable: server
                       label: Server
                       description: The server for the SMB share.
